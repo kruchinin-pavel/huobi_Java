@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 class InputChecker {
 
-  private static final String regEx = "[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\t";
+  private static final String regEx = "[ _`~!@#$%^&()+=|{}':;',\\[\\].<>/?~！@#￥%……&（）——+|{}【】‘；：”“’。，、？]|\n|\t";
 
   private static final InputChecker checkerInst;
 
