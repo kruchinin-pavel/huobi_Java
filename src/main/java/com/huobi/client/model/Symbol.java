@@ -159,4 +159,21 @@ public class Symbol {
   public void setLeverageRatio(Integer leverageRatio) {
     this.leverageRatio = leverageRatio;
   }
+
+  @Override
+  public String toString() {
+    return "Symbol{" +
+            "symbol='" + symbol + '\'' +
+            ", baseCcy='" + baseCurrency + '\'' +
+            ", quoteCcy='" + quoteCurrency + '\'' +
+            ", pricePrec=" + pricePrecision +
+            ", amountPrec=" + amountPrecision +
+            ", symbolPartition='" + symbolPartition + '\'' +
+            ", valuePrecision=" + valuePrecision +
+            ", minOrderAmt=" + minOrderAmt +
+            ", maxOrderAmt=" + maxOrderAmt +
+            ", minOrderValue=" + minOrderValue +
+            ", leverageRatio=" + leverageRatio +
+            '}';
+  }
 }
