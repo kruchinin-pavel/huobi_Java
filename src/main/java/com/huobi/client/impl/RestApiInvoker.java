@@ -93,7 +93,7 @@ abstract class RestApiInvoker {
       throw e;
     } catch (Exception e) {
       throw new HuobiApiException(
-          HuobiApiException.ENV_ERROR, "[Invoking] Unexpected error: " + e.getMessage());
+              HuobiApiException.ENV_ERROR, "[Invoking] Unexpected error: " + e.getMessage(), e);
     }
   }
 
