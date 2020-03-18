@@ -56,10 +56,10 @@ class ApiSignature {
       hmacSha256.init(secKey);
     } catch (NoSuchAlgorithmException e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Signature] No such algorithm: " + e.getMessage());
+              "[Signature] No such algorithm: " + e.getMessage(), e);
     } catch (InvalidKeyException e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Signature] Invalid key: " + e.getMessage());
+              "[Signature] Invalid key: " + e.getMessage(), e);
     }
     String payload = sb.toString();
     byte[] hash = hmacSha256.doFinal(payload.getBytes(StandardCharsets.UTF_8));

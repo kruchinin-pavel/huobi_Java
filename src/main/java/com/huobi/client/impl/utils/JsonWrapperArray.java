@@ -55,7 +55,7 @@ public class JsonWrapperArray {
       return (Long) getObjectAt(index);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Cannot get long at index " + index + " in array: " + e.getMessage());
+              "[Json] Cannot get long at index " + index + " in array: " + e.getMessage(), e);
     }
 
   }
@@ -65,7 +65,7 @@ public class JsonWrapperArray {
     try {
       return new BigDecimal(((BigDecimal) getObjectAt(index)).stripTrailingZeros().toPlainString());
     } catch (RuntimeException e) {
-      throw new HuobiApiException(null, e.getMessage());
+      throw new HuobiApiException(null, e.getMessage(), e);
     }
 
   }
@@ -75,7 +75,7 @@ public class JsonWrapperArray {
     try {
       return (String) getObjectAt(index);
     } catch (RuntimeException e) {
-      throw new HuobiApiException(null, e.getMessage());
+      throw new HuobiApiException(null, e.getMessage(), e);
     }
 
   }

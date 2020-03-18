@@ -28,7 +28,7 @@ public class RequestOptions {
     } catch (Exception e)
     {
       throw new HuobiApiException(
-          HuobiApiException.INPUT_ERROR, "The URI is incorrect: " + e.getMessage());
+              HuobiApiException.INPUT_ERROR, "The URI is incorrect: " + e.getMessage(), e);
     }
     this.url = url;
   }

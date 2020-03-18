@@ -218,7 +218,7 @@ public class UrlParamsBuilder {
       return URLEncoder.encode(s, "UTF-8").replaceAll("\\+", "%20");
     } catch (UnsupportedEncodingException e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[URL] UTF-8 encoding not supported!");
+              "[URL] UTF-8 encoding not supported!", e);
     }
   }
 }

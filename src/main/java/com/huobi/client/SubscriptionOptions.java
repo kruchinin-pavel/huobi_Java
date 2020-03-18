@@ -36,7 +36,7 @@ public class SubscriptionOptions {
     } catch (Exception e)
     {
       throw new HuobiApiException(
-          HuobiApiException.INPUT_ERROR, "The URI is incorrect: " + e.getMessage());
+              HuobiApiException.INPUT_ERROR, "The URI is incorrect: " + e.getMessage(), e);
     }
     this.uri = uri;
   }

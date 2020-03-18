@@ -23,9 +23,9 @@ public class JsonWrapper {
       }
     } catch (JSONException e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Fail to parse json: " + text);
+              "[Json] Fail to parse json: " + text, e);
     } catch (Exception e) {
-      throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR, "[Json] " + e.getMessage());
+      throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR, "[Json] " + e.getMessage(), e);
     }
   }
 
@@ -50,7 +50,7 @@ public class JsonWrapper {
       return json.getString(name);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get string error: " + name + " " + e.getMessage());
+              "[Json] Get string error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -74,7 +74,7 @@ public class JsonWrapper {
       return json.getBoolean(name);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get boolean error: " + name + " " + e.getMessage());
+              "[Json] Get boolean error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -84,7 +84,7 @@ public class JsonWrapper {
       return json.getInteger(name);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get integer error: " + name + " " + e.getMessage());
+              "[Json] Get integer error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -96,7 +96,7 @@ public class JsonWrapper {
       return json.getInteger(name);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get integer error: " + name + " " + e.getMessage());
+              "[Json] Get integer error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -106,7 +106,7 @@ public class JsonWrapper {
       return json.getLong(name);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get long error: " + name + " " + e.getMessage());
+              "[Json] Get long error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -118,7 +118,7 @@ public class JsonWrapper {
       return json.getLong(name);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get long error: " + name + " " + e.getMessage());
+              "[Json] Get long error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -128,7 +128,7 @@ public class JsonWrapper {
       return new BigDecimal(json.getBigDecimal(name).stripTrailingZeros().toPlainString());
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get decimal error: " + name + " " + e.getMessage());
+              "[Json] Get decimal error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -140,7 +140,7 @@ public class JsonWrapper {
       return new BigDecimal(json.getBigDecimal(name).stripTrailingZeros().toPlainString());
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get decimal error: " + name + " " + e.getMessage());
+              "[Json] Get decimal error: " + name + " " + e.getMessage(), e);
     }
   }
 
@@ -161,7 +161,7 @@ public class JsonWrapper {
       array = json.getJSONArray(name);
     } catch (Exception e) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-          "[Json] Get array: " + name + " error");
+              "[Json] Get array: " + name + " error", e);
     }
     if (array == null) {
       throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR,

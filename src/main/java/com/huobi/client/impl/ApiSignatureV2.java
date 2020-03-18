@@ -56,9 +56,9 @@ class ApiSignatureV2 {
       SecretKeySpec secKey = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), SIGNATURE_METHOD_VALUE);
       hmacSha256.init(secKey);
     } catch (NoSuchAlgorithmException e) {
-      throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR, "[Signature] No such algorithm: " + e.getMessage());
+      throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR, "[Signature] No such algorithm: " + e.getMessage(), e);
     } catch (InvalidKeyException e) {
-      throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR, "[Signature] Invalid key: " + e.getMessage());
+      throw new HuobiApiException(HuobiApiException.RUNTIME_ERROR, "[Signature] Invalid key: " + e.getMessage(), e);
     }
     String payload = sb.toString();
     byte[] hash = hmacSha256.doFinal(payload.getBytes(StandardCharsets.UTF_8));
