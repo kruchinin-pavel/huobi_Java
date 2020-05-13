@@ -4,6 +4,7 @@ import com.huobi.client.SyncRequestClient;
 import com.huobi.client.exception.HuobiApiException;
 import com.huobi.client.model.Account;
 import com.huobi.client.model.AccountHistory;
+import com.huobi.client.model.AccountLedger;
 import com.huobi.client.model.Balance;
 import com.huobi.client.model.BatchCancelResult;
 import com.huobi.client.model.BatchCancelResultV1;
@@ -39,9 +40,11 @@ import com.huobi.client.model.enums.AccountType;
 import com.huobi.client.model.enums.CandlestickInterval;
 import com.huobi.client.model.enums.QueryDirection;
 import com.huobi.client.model.request.AccountHistoryRequest;
+import com.huobi.client.model.request.AccountLedgerRequest;
 import com.huobi.client.model.request.BatchCancelRequest;
 import com.huobi.client.model.request.CancelOpenOrderRequest;
 import com.huobi.client.model.request.CandlestickRequest;
+import com.huobi.client.model.request.CrossMarginAccountRequest;
 import com.huobi.client.model.enums.EtfSwapType;
 import com.huobi.client.model.request.CrossMarginApplyLoanRequest;
 import com.huobi.client.model.request.CrossMarginLoanOrderRequest;
@@ -54,6 +57,7 @@ import com.huobi.client.model.request.NewOrderRequest;
 import com.huobi.client.model.request.OpenOrderRequest;
 import com.huobi.client.model.request.OrdersHistoryRequest;
 import com.huobi.client.model.request.OrdersRequest;
+import com.huobi.client.model.request.SubUserDepositHistoryRequest;
 import com.huobi.client.model.request.SubuserManagementRequest;
 import com.huobi.client.model.request.TransferFuturesRequest;
 import com.huobi.client.model.request.TransferMasterRequest;
@@ -186,6 +190,10 @@ public class SyncRequestImpl implements SyncRequestClient {
     return RestApiInvoker.callSync(requestImpl.getDepositHistory(currency, fromId, size, direction));
   }
 
+  public List<Deposit> getSubUserDepositHistory(SubUserDepositHistoryRequest request) {
+    return RestApiInvoker.callSync(requestImpl.getSubUserDepositHistory(request));
+  }
+
   @Override
   public Long transfer(TransferRequest transferRequest) {
     return RestApiInvoker.callSync(requestImpl.transfer(transferRequest));
@@ -232,8 +240,8 @@ public class SyncRequestImpl implements SyncRequestClient {
     return RestApiInvoker.callSync(requestImpl.getCrossMarginLoanHistory(request));
   }
 
-  public CrossMarginAccount getCrossMarginAccount() {
-    return RestApiInvoker.callSync(requestImpl.getCrossMarginAccount());
+  public CrossMarginAccount getCrossMarginAccount(CrossMarginAccountRequest request) {
+    return RestApiInvoker.callSync(requestImpl.getCrossMarginAccount(request));
   }
 
   public List<CrossMarginLoanInfo> getCrossMarginLoanInfo() {
@@ -368,6 +376,11 @@ public class SyncRequestImpl implements SyncRequestClient {
   }
 
   @Override
+  public List<DepositAddress> getSubUserDepositAddress(Long subUid, String currency) {
+    return RestApiInvoker.callSync(requestImpl.getSubUserDepositAddress(subUid, currency));
+  }
+
+  @Override
   public WithdrawQuota getWithdrawQuota(String currency) {
     return RestApiInvoker.callSync(requestImpl.getWithdrawQuota(currency));
   }
@@ -446,4 +459,14 @@ public class SyncRequestImpl implements SyncRequestClient {
   public List<MarginBalanceDetail> getMarginBalanceDetail(String symbol) {
     return RestApiInvoker.callSync(requestImpl.getMarginBalanceDetail(symbol));
   }
+
+	@Override
+	public List<AccountLedger> getAccountLedgers(AccountLedgerRequest request) {
+		return RestApiInvoker.callSync(requestImpl.getAccountLedgeRequest(request));
+	}
+	
+	@Override
+	public String getSystemStatus() {
+		return RestApiInvoker.callSync(requestImpl.getSystemStatusRequest(), Boolean.FALSE);
+	}
 }
