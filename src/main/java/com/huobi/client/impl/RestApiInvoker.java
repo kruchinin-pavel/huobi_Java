@@ -98,7 +98,7 @@ public abstract class RestApiInvoker {
       throw e;
     } catch (Exception e) {
       throw new HuobiApiException(
-          HuobiApiException.RUNTIME_ERROR, "[Invoking] Unexpected error: " + e.getMessage());
+          HuobiApiException.RUNTIME_ERROR, "[Invoking] Unexpected error: " + e.getMessage(), e);
     }
   }
 
@@ -133,7 +133,7 @@ public abstract class RestApiInvoker {
 	      throw e;
 	    } catch (Exception e) {
 	      throw new HuobiApiException(
-	          HuobiApiException.ENV_ERROR, "[Invoking] Unexpected error: " + e.getMessage());
+	          HuobiApiException.ENV_ERROR, "[Invoking] Unexpected error: " + e.getMessage(), e);
 	    }
 	  }
   
@@ -144,9 +144,9 @@ public abstract class RestApiInvoker {
       call.enqueue(new Callback() {
         @Override
         public void onFailure(Call call, IOException e) {
-          FailedAsyncResult<T> result = new FailedAsyncResult<>(
-              new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
-                  "[Invoking] Rest api call failed"));
+            FailedAsyncResult<T> result = new FailedAsyncResult<>(
+                    new HuobiApiException(HuobiApiException.RUNTIME_ERROR,
+                            "[Invoking] Rest api call failed", e));
           try {
             callback.onResponse(result);
           } catch (Exception exception) {
@@ -173,7 +173,7 @@ public abstract class RestApiInvoker {
           } catch (Exception e) {
             FailedAsyncResult<T> result = new FailedAsyncResult<>(
                 new HuobiApiException(
-                    HuobiApiException.RUNTIME_ERROR, "[Invoking] Rest api call failed"));
+                    HuobiApiException.RUNTIME_ERROR, "[Invoking] Rest api call failed", e));
             callback.onResponse(result);
             return;
           }
